@@ -3,27 +3,440 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cricket Records - Figma Prototype</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* This ensures the body takes the full height of the viewport */
-        html, body, #root {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', sans-serif;
-        }
-    </style>
+    <title>Cricket Records | Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <div id="root"></div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-router-dom@6/umd/react-router-dom.development.js" crossorigin></script>
-    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-    <script type="text/babel" src="./src/index.js"></script>
+    <header class="main-header">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/">
+                        <span class="logo-text">CricketStats</span>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="/">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/pages/player-profile.html">Players</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/pages/team-stats.html">Teams</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/pages/search.html">Search</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/pages/comparison.html">Compare</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="hero-title">Discover Cricket's Greatest Records</h1>
+                    <p class="hero-subtitle">Explore statistics, compare players, and dive into the rich history of cricket</p>
+                    <div class="search-container">
+                        <form action="/pages/search.html" method="get">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search players, teams, records...">
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-image-placeholder">
+                        <svg width="100%" height="300" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="100%" height="100%" fill="#f0f0f0"></rect>
+                            <text x="50%" y="50%" font-family="Arial" font-size="20" text-anchor="middle" fill="#888">Cricket Stadium Image</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="trending-section">
+        <div class="container">
+            <h2 class="section-title">Trending Records</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="trending-card">
+                        <div class="trending-badge">New</div>
+                        <h3>Most ODI Centuries</h3>
+                        <div class="record-holder">
+                            <div class="record-avatar">
+                                <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="25" cy="25" r="25" fill="#ddd"></circle>
+                                    <text x="50%" y="50%" font-family="Arial" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="#888">VK</text>
+                                </svg>
+                            </div>
+                            <div class="record-info">
+                                <div class="record-name">Virat Kohli</div>
+                                <div class="record-value">50 centuries</div>
+                            </div>
+                        </div>
+                        <a href="/pages/player-profile.html" class="btn btn-outline-primary btn-sm">View Details</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="trending-card">
+                        <h3>Highest Test Score</h3>
+                        <div class="record-holder">
+                            <div class="record-avatar">
+                                <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="25" cy="25" r="25" fill="#ddd"></circle>
+                                    <text x="50%" y="50%" font-family="Arial" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="#888">BL</text>
+                                </svg>
+                            </div>
+                            <div class="record-info">
+                                <div class="record-name">Brian Lara</div>
+                                <div class="record-value">400* runs</div>
+                            </div>
+                        </div>
+                        <a href="/pages/player-profile.html" class="btn btn-outline-primary btn-sm">View Details</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="trending-card">
+                        <h3>Fastest T20 Century</h3>
+                        <div class="record-holder">
+                            <div class="record-avatar">
+                                <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="25" cy="25" r="25" fill="#ddd"></circle>
+                                    <text x="50%" y="50%" font-family="Arial" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="#888">CG</text>
+                                </svg>
+                            </div>
+                            <div class="record-info">
+                                <div class="record-name">Chris Gayle</div>
+                                <div class="record-value">30 balls</div>
+                            </div>
+                        </div>
+                        <a href="/pages/player-profile.html" class="btn btn-outline-primary btn-sm">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="featured-players-section">
+        <div class="container">
+            <h2 class="section-title">Featured Players</h2>
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="player-card">
+                        <div class="player-image">
+                            <svg width="100%" height="200" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="100%" height="100%" fill="#f5f5f5"></rect>
+                                <text x="50%" y="50%" font-family="Arial" font-size="16" text-anchor="middle" fill="#888">Virat Kohli</text>
+                            </svg>
+                        </div>
+                        <div class="player-info">
+                            <h3>Virat Kohli</h3>
+                            <p>Right-handed Batsman</p>
+                            <div class="player-stats">
+                                <div class="stat">
+                                    <span class="stat-value">8000+</span>
+                                    <span class="stat-label">Test Runs</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-value">12000+</span>
+                                    <span class="stat-label">ODI Runs</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-value">4000+</span>
+                                    <span class="stat-label">T20 Runs</span>
+                                </div>
+                            </div>
+                            <a href="/pages/player-profile.html" class="btn btn-primary btn-sm">View Profile</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="player-card">
+                        <div class="player-image">
+                            <svg width="100%" height="200" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="100%" height="100%" fill="#f5f5f5"></rect>
+                                <text x="50%" y="50%" font-family="Arial" font-size="16" text-anchor="middle" fill="#888">Joe Root</text>
+                            </svg>
+                        </div>
+                        <div class="player-info">
+                            <h3>Joe Root</h3>
+                            <p>Right-handed Batsman</p>
+                            <div class="player-stats">
+                                <div class="stat">
+                                    <span class="stat-value">11000+</span>
+                                    <span class="stat-label">Test Runs</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-value">6000+</span>
+                                    <span class="stat-label">ODI Runs</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-value">900+</span>
+                                    <span class="stat-label">T20 Runs</span>
+                                </div>
+                            </div>
+                            <a href="/pages/player-profile.html" class="btn btn-primary btn-sm">View Profile</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="player-card">
+                        <div class="player-image">
+                            <svg width="100%" height="200" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="100%" height="100%" fill="#f5f5f5"></rect>
+                                <text x="50%" y="50%" font-family="Arial" font-size="16" text-anchor="middle" fill="#888">Jasprit Bumrah</text>
+                            </svg>
+                        </div>
+                        <div class="player-info">
+                            <h3>Jasprit Bumrah</h3>
+                            <p>Right-arm Fast Bowler</p>
+                            <div class="player-stats">
+                                <div class="stat">
+                                    <span class="stat-value">150+</span>
+                                    <span class="stat-label">Test Wickets</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-value">140+</span>
+                                    <span class="stat-label">ODI Wickets</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-value">70+</span>
+                                    <span class="stat-label">T20 Wickets</span>
+                                </div>
+                            </div>
+                            <a href="/pages/player-profile.html" class="btn btn-primary btn-sm">View Profile</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="player-card">
+                        <div class="player-image">
+                            <svg width="100%" height="200" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="100%" height="100%" fill="#f5f5f5"></rect>
+                                <text x="50%" y="50%" font-family="Arial" font-size="16" text-anchor="middle" fill="#888">Kane Williamson</text>
+                            </svg>
+                        </div>
+                        <div class="player-info">
+                            <h3>Kane Williamson</h3>
+                            <p>Right-handed Batsman</p>
+                            <div class="player-stats">
+                                <div class="stat">
+                                    <span class="stat-value">8000+</span>
+                                    <span class="stat-label">Test Runs</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-value">6000+</span>
+                                    <span class="stat-label">ODI Runs</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-value">2000+</span>
+                                    <span class="stat-label">T20 Runs</span>
+                                </div>
+                            </div>
+                            <a href="/pages/player-profile.html" class="btn btn-primary btn-sm">View Profile</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="teams-section">
+        <div class="container">
+            <h2 class="section-title">Featured Teams</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="team-card">
+                        <div class="team-logo">
+                            <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="50" cy="50" r="45" fill="#0052CC" stroke="#fff" stroke-width="2"></circle>
+                                <text x="50%" y="50%" font-family="Arial" font-size="20" text-anchor="middle" dominant-baseline="middle" fill="#fff">IND</text>
+                            </svg>
+                        </div>
+                        <h3>India</h3>
+                        <div class="team-rank">ICC Rank: #1</div>
+                        <div class="team-quick-stats">
+                            <div class="team-stat">
+                                <span class="stat-label">World Cups</span>
+                                <span class="stat-value">2</span>
+                            </div>
+                            <div class="team-stat">
+                                <span class="stat-label">T20 Cups</span>
+                                <span class="stat-value">1</span>
+                            </div>
+                        </div>
+                        <a href="/pages/team-stats.html" class="btn btn-primary btn-sm">Team Profile</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="team-card">
+                        <div class="team-logo">
+                            <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="50" cy="50" r="45" fill="#006400" stroke="#fff" stroke-width="2"></circle>
+                                <text x="50%" y="50%" font-family="Arial" font-size="20" text-anchor="middle" dominant-baseline="middle" fill="#fff">AUS</text>
+                            </svg>
+                        </div>
+                        <h3>Australia</h3>
+                        <div class="team-rank">ICC Rank: #2</div>
+                        <div class="team-quick-stats">
+                            <div class="team-stat">
+                                <span class="stat-label">World Cups</span>
+                                <span class="stat-value">5</span>
+                            </div>
+                            <div class="team-stat">
+                                <span class="stat-label">T20 Cups</span>
+                                <span class="stat-value">1</span>
+                            </div>
+                        </div>
+                        <a href="/pages/team-stats.html" class="btn btn-primary btn-sm">Team Profile</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="team-card">
+                        <div class="team-logo">
+                            <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="50" cy="50" r="45" fill="#00247D" stroke="#fff" stroke-width="2"></circle>
+                                <text x="50%" y="50%" font-family="Arial" font-size="20" text-anchor="middle" dominant-baseline="middle" fill="#fff">ENG</text>
+                            </svg>
+                        </div>
+                        <h3>England</h3>
+                        <div class="team-rank">ICC Rank: #3</div>
+                        <div class="team-quick-stats">
+                            <div class="team-stat">
+                                <span class="stat-label">World Cups</span>
+                                <span class="stat-value">1</span>
+                            </div>
+                            <div class="team-stat">
+                                <span class="stat-label">T20 Cups</span>
+                                <span class="stat-value">2</span>
+                            </div>
+                        </div>
+                        <a href="/pages/team-stats.html" class="btn btn-primary btn-sm">Team Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title">Explore Features</h2>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-search fa-2x"></i>
+                        </div>
+                        <h3>Advanced Search</h3>
+                        <p>Find players, teams, and records with powerful filters</p>
+                        <a href="/pages/search.html" class="feature-link">Explore <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line fa-2x"></i>
+                        </div>
+                        <h3>Statistical Analysis</h3>
+                        <p>Dive deep into player and team performance analytics</p>
+                        <a href="/pages/player-profile.html" class="feature-link">Explore <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-trophy fa-2x"></i>
+                        </div>
+                        <h3>Records Database</h3>
+                        <p>Explore the most comprehensive cricket records collection</p>
+                        <a href="/pages/search.html" class="feature-link">Explore <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-balance-scale fa-2x"></i>
+                        </div>
+                        <h3>Player Comparison</h3>
+                        <p>Compare statistics between players and teams side by side</p>
+                        <a href="/pages/comparison.html" class="feature-link">Explore <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h3 class="footer-title">CricketStats</h3>
+                    <p>Your ultimate destination for cricket statistics, records, and analysis.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <h4 class="footer-subtitle">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/pages/player-profile.html">Players</a></li>
+                        <li><a href="/pages/team-stats.html">Teams</a></li>
+                        <li><a href="/pages/search.html">Search</a></li>
+                        <li><a href="/pages/comparison.html">Compare</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h4 class="footer-subtitle">Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h4 class="footer-subtitle">Newsletter</h4>
+                    <p>Subscribe to our newsletter for the latest cricket updates.</p>
+                    <form class="newsletter-form">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Your Email">
+                            <button class="btn btn-primary" type="submit">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 CricketStats. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/main.js"></script>
 </body>
 </html>

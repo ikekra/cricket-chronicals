@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Records | Player Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/">
+                        <span class="logo-text">CricketStats</span>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="/pages/player-profile.html">Players</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/pages/team-stats.html">Teams</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/pages/search.html">Search</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/pages/comparison.html">Compare</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="player-header">
+        <div class="container">
+            <div class="player-profile-card">
+                <div class="player-profile-img">
+                    <svg width="250" height="300" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="100%" height="100%" fill="#f0f0f0"></rect>
+                        <text x="50%" y="50%" font-family="Arial" font-size="20" text-anchor="middle" fill="#888">Virat Kohli</text>
+                    </svg>
+                </div>
+                <div class="player-profile-details">
+                    <h1 class="player-profile-name">Virat Kohli</h1>
+                    <div class="player-profile-info">
+                        <p><strong>Country:</strong> India</p>
+                        <p><strong>Born:</strong> November 5, 1988 (35 years)</p>
+                        <p><strong>Role:</strong> Right-handed Batsman</p>
+                        <p><strong>Batting Style:</strong> Right-handed</p>
+                        <p><strong>Bowling Style:</strong> Right-arm Medium</p>
+                    </div>
+                    <div class="player-profile-stats">
+                        <div class="profile-stat">
+                            <div class="profile-stat-value">8000+</div>
+                            <div class="profile-stat-label">Test Runs</div>
+                        </div>
+                        <div class="profile-stat">
+                            <div class="profile-stat-value">12000+</div>
+                            <div class="profile-stat-label">ODI Runs</div>
+                        </div>
+                        <div class="profile-stat">
+                            <div class="profile-stat-value">4000+</div>
+                            <div class="profile-stat-label">T20 Runs</div>
+                        </div>
+                        <div class="profile-stat">
+                            <div class="profile-stat-value">75+</div>
+                            <div class="profile-stat-label">Centuries</div>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <a href="/pages/comparison.html?player1=Virat%20Kohli" class="btn btn-outline-primary">Compare with another player</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="container">
+            <ul class="nav nav-tabs stats-tabs" id="statsTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" onclick="switchTab(event, 'career-tab')" type="button">Career Stats</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" onclick="switchTab(event, 'batting-tab')" type="button">Batting Analysis</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" onclick="switchTab(event, 'opposition-tab')" type="button">Vs Opposition</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" onclick="switchTab(event, 'milestones-tab')" type="button">Milestones</button>
+                </li>
+            </ul>
+            
+            <div class="tab-content" id="statsTabContent">
+                <!-- Career Stats Tab -->
+                <div class="tab-pane fade show active" id="career-tab" role="tabpanel">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="stat-card">
+                                <h3>Career Progression</h3>
+                                <div class="chart-container">
+                                    <canvas id="careerProgressionChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="stat-card">
+                                <h3>Test Cricket</h3>
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <th>Matches</th>
+                                            <td>108</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Innings</th>
+                                            <td>183</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Runs</th>
+                                            <td>8,416</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Average</th>
+                                            <td>49.95</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Strike Rate</th>
+                                            <td>55.70</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Highest Score</th>
+                                            <td>254*</td>
+                                        </tr>
+                                        <tr>
+                                            <th>100s / 50s</th>
+                                            <td>28 / 28</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="stat-card">
+                                <h3>ODI Cricket</h3>
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <th>Matches</th>
+                                            <td>275</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Innings</th>
+                                            <td>265</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Runs</th>
+                                            <td>12,898</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Average</th>
+                                            <td>57.32</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Strike Rate</th>
+                                            <td>93.62</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Highest Score</th>
+                                            <td>183</td>
+                                        </tr>
+                                        <tr>
+                                            <th>100s / 50s</th>
+                                            <td>46 / 65</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="stat-card">
+                                <h3>T20I Cricket</h3>
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <th>Matches</th>
+                                            <td>115</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Innings</th>
+                                            <td>107</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Runs</th>
+                                            <td>4,008</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Average</th>
+                                            <td>52.73</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Strike Rate</th>
+                                            <td>137.96</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Highest Score</th>
+                                            <td>122*</td>
+                                        </tr>
+                                        <tr>
+                                            <th>100s / 50s</th>
+                                            <td>1 / 37</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="stat-card">
+                                <h3>Performance Across Formats</h3>
+                                <div class="chart-container">
+                                    <canvas id="formatPerformanceChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Batting Analysis Tab -->
+                <div class="tab-pane fade" id="batting-tab" role="tabpanel">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="stat-card">
+                                <h3>Batting Average by Position</h3>
+                                <div class="chart-container">
+                                    <canvas id="battingPositionChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="stat-card">
+                                <h3>Dismissal Analysis</h3>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Dismissal Type</th>
+                                            <th>Test</th>
+                                            <th>ODI</th>
+                                            <th>T20I</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Bowled</td>
+                                            <td>20</td>
+                                            <td>30</td>
+                                            <td>15</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Caught</td>
+                                            <td>105</td>
+                                            <td>150</td>
+                                            <td>70</td>
+                                        </tr>
+                                        <tr>
+                                            <td>LBW</td>
+                                            <td>35</td>
+                                            <td>40</td>
+                                            <td>10</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Stumped</td>
+                                            <td>5</td>
+                                            <td>10</td>
+                                            <td>5</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Run Out</td>
+                                            <td>5</td>
+                                            <td>15</td>
+                                            <td>5</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="stat-card">
+                                <h3>Innings Progression</h3>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Phase</th>
+                                            <th>Average</th>
+                                            <th>Strike Rate</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1-10 Balls</td>
+                                            <td>35.5</td>
+                                            <td>65.3</td>
+                                        </tr>
+                                        <tr>
+                                            <td>11-30 Balls</td>
+                                            <td>42.8</td>
+                                            <td>75.6</td>
+                                        </tr>
+                                        <tr>
+                                            <td>31-50 Balls</td>
+                                            <td>58.2</td>
+                                            <td>85.3</td>
+                                        </tr>
+                                        <tr>
+                                            <td>51-100 Balls</td>
+                                            <td>75.6</td>
+                                            <td>88.4</td>
+                                        </tr>
+                                        <tr>
+                                            <td>100+ Balls</td>
+                                            <td>95.8</td>
+                                            <td>90.6</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="stat-card">
+                                <h3>Performance by Venue Type</h3>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Venue Type</th>
+                                            <th>Matches</th>
+                                            <th>Average</th>
+                                            <th>100s / 50s</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Home</td>
+                                            <td>150</td>
+                                            <td>65.2</td>
+                                            <td>25 / 40</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Away</td>
+                                            <td>180</td>
+                                            <td>55.8</td>
+                                            <td>30 / 45</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Neutral</td>
+                                            <td>120</td>
+                                            <td>58.3</td>
+                                            <td>20 / 30</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Opposition Stats Tab -->
+                <div class="tab-pane fade" id="opposition-tab" role="tabpanel">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="stat-card">
+                                <h3>Performance Against Teams</h3>
+                                <div class="chart-container">
+                                    <canvas id="oppositionPerfChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="stat-card">
+                                <h3>Best Performances</h3>
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        <div class="d-flex justify-content-between">
+                                            <span><strong>254*</strong> vs South Africa</span>
+                                            <span class="text-muted">Test, 2019</span>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <div class="d-flex justify-content-between">
+                                            <span><strong>183</strong> vs Pakistan</span>
+                                            <span class="text-muted">ODI, 2012</span>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <div class="d-flex justify-content-between">
+                                            <span><strong>169</strong> vs Australia</span>
+                                            <span class="text-muted">Test, 2014</span>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <div class="d-flex justify-content-between">
+                                            <span><strong>160*</strong> vs West Indies</span>
+                                            <span class="text-muted">ODI, 2018</span>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <div class="d-flex justify-content-between">
+                                            <span><strong>122*</strong> vs Afghanistan</span>
+                                            <span class="text-muted">T20I, 2022</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="stat-card">
+                                <h3>Detailed Stats by Opposition</h3>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Team</th>
+                                                <th>Format</th>
+                                                <th>Matches</th>
+                                                <th>Innings</th>
+                                                <th>Runs</th>
+                                                <th>Average</th>
+                                                <th>SR</th>
+                                                <th>100s</th>
+                                                <th>50s</th>
+                                                <th>HS</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td rowspan="3">Australia</td>
+                                                <td>Test</td>
+                                                <td>20</td>
+                                                <td>35</td>
+                                                <td>1,682</td>
+                                                <td>55.73</td>
+                                                <td>56.82</td>
+                                                <td>6</td>
+                                                <td>5</td>
+                                                <td>169</td>
+                                            </tr>
+                                            <tr>
+                                                <td>ODI</td>
+                                                <td>40</td>
+                                                <td>38</td>
+                                                <td>2,083</td>
+                                                <td>59.51</td>
+                                                <td>95.20</td>
+                                                <td>8</td>
+                                                <td>10</td>
+                                                <td>140*</td>
+                                            </tr>
+                                            <tr>
+                                                <td>T20I</td>
+                                                <td>22</td>
+                                                <td>20</td>
+                                                <td>718</td>
+                                                <td>47.87</td>
+                                                <td>146.53</td>
+                                                <td>0</td>
+                                                <td>7</td>
+                                                <td>90*</td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="3">England</td>
+                                                <td>Test</td>
+                                                <td>25</td>
+                                                <td>45</td>
+                                                <td>1,960</td>
+                                                <td>45.58</td>
+                                                <td>53.90</td>
+                                                <td>5</td>
+                                                <td>9</td>
+                                                <td>149</td>
+                                            </tr>
+                                            <tr>
+                                                <td>ODI</td>
+                                                <td>35</td>
+                                                <td>33</td>
+                                                <td>1,742</td>
+                                                <td>58.07</td>
+                                                <td>94.85</td>
+                                                <td>6</td>
+                                                <td>8</td>
+                                                <td>122</td>
+                                            </tr>
+                                            <tr>
+                                                <td>T20I</td>
+                                                <td>20</td>
+                                                <td>18</td>
+                                                <td>589</td>
+                                                <td>53.55</td>
+                                                <td>140.24</td>
+                                                <td>0</td>
+                                                <td>6</td>
+                                                <td>80*</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Milestones Tab -->
+                <div class="tab-pane fade" id="milestones-tab" role="tabpanel">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="milestone-card">
+                                <div class="milestone-icon">
+                                    <i class="fas fa-trophy fa-2x"></i>
+                                </div>
+                                <div class="milestone-info">
+                                    <h3>First Test Century</h3>
+                                    <p>Scored 116 runs against Australia at Adelaide</p>
+                                    <div class="milestone-date">January 24, 2012</div>
+                                </div>
+                            </div>
+                            <div class="milestone-card">
+                                <div class="milestone-icon">
+                                    <i class="fas fa-award fa-2x"></i>
+                                </div>
+                                <div class="milestone-info">
+                                    <h3>Fastest to 10,000 ODI Runs</h3>
+                                    <p>Reached milestone in just 205 innings, breaking Sachin Tendulkar's record</p>
+                                    <div class="milestone-date">June 18, 2018</div>
+                                </div>
+                            </div>
+                            <div class="milestone-card">
+                                <div class="milestone-icon">
+                                    <i class="fas fa-medal fa-2x"></i>
+                                </div>
+                                <div class="milestone-info">
+                                    <h3>Most ODI Centuries as Captain</h3>
+                                    <p>Surpassed Ricky Ponting's record of 22 centuries</p>
+                                    <div class="milestone-date">February 10, 2020</div>
+                                </div>
+                            </div>
+                            <div class="milestone-card">
+                                <div class="milestone-icon">
+                                    <i class="fas fa-crown fa-2x"></i>
+                                </div>
+                                <div class="milestone-info">
+                                    <h3>First Player to Score 3,000 Runs in T20I</h3>
+                                    <p>Milestone achieved during match against England</p>
+                                    <div class="milestone-date">March 14, 2021</div>
+                                </div>
+                            </div>
+                            <div class="milestone-card">
+                                <div class="milestone-icon">
+                                    <i class="fas fa-star fa-2x"></i>
+                                </div>
+                                <div class="milestone-info">
+                                    <h3>50th ODI Century</h3>
+                                    <p>Became the first player to reach this milestone, during the 2023 World Cup Final against Australia</p>
+                                    <div class="milestone-date">November 19, 2023</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 mt-4">
+                            <div class="stat-card">
+                                <h3>Career Timeline</h3>
+                                <div class="timeline">
+                                    <div class="timeline-item">
+                                        <div class="timeline-date">August 2008</div>
+                                        <div class="timeline-content">
+                                            <h4>International Debut</h4>
+                                            <p>Made ODI debut against Sri Lanka in Dambulla</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-date">June 2010</div>
+                                        <div class="timeline-content">
+                                            <h4>T20I Debut</h4>
+                                            <p>Made T20I debut against Zimbabwe</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-date">June 2011</div>
+                                        <div class="timeline-content">
+                                            <h4>Test Debut</h4>
+                                            <p>Made Test debut against West Indies in Kingston</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-date">March 2013</div>
+                                        <div class="timeline-content">
+                                            <h4>First ICC Ranking #1</h4>
+                                            <p>Reached #1 in ICC ODI batsmen rankings for the first time</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-date">January 2017</div>
+                                        <div class="timeline-content">
+                                            <h4>India Captain</h4>
+                                            <p>Appointed as captain in all three formats of the game</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-date">December 2021</div>
+                                        <div class="timeline-content">
+                                            <h4>Step Down as T20I Captain</h4>
+                                            <p>Relinquished T20I captaincy to focus on ODI and Test formats</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-date">January 2022</div>
+                                        <div class="timeline-content">
+                                            <h4>Step Down as Test Captain</h4>
+                                            <p>Stepped down as Test captain after 7 years at the helm</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-date">November 2023</div>
+                                        <div class="timeline-content">
+                                            <h4>50th ODI Century</h4>
+                                            <p>Created history by scoring his 50th ODI century</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h3 class="footer-title">CricketStats</h3>
+                    <p>Your ultimate destination for cricket statistics, records, and analysis.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <h4 class="footer-subtitle">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/pages/player-profile.html">Players</a></li>
+                        <li><a href="/pages/team-stats.html">Teams</a></li>
+                        <li><a href="/pages/search.html">Search</a></li>
+                        <li><a href="/pages/comparison.html">Compare</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h4 class="footer-subtitle">Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h4 class="footer-subtitle">Newsletter</h4>
+                    <p>Subscribe to our newsletter for the latest cricket updates.</p>
+                    <form class="newsletter-form">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Your Email">
+                            <button class="btn btn-primary" type="submit">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 CricketStats. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/charts.js"></script>
+</body>
+</html>
