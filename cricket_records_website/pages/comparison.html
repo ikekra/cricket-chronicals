@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Records | Compare</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/">
+                        <span class="logo-text">CricketStats</span>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/pages/player-profile.html">Players</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/pages/team-stats.html">Teams</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/pages/search.html">Search</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="/pages/comparison.html">Compare</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="comparison-page-header">
+        <div class="container">
+            <h1 class="comparison-page-title">Cricket Comparison Tool</h1>
+            <p class="lead">Compare statistics between players or teams with our side-by-side analysis tool</p>
+
+            <ul class="nav nav-tabs comparison-type-tabs mb-4" id="comparisonTypeTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" onclick="switchTab(event, 'player-comparison-tab')" type="button">Player Comparison</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" onclick="switchTab(event, 'team-comparison-tab')" type="button">Team Comparison</button>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="comparisonTypeTabContent">
+                <!-- Player Comparison Tab -->
+                <div class="tab-pane fade show active" id="player-comparison-tab" role="tabpanel">
+                    <form class="comparison-form">
+                        <div class="compare-input">
+                            <label class="form-label">Player 1</label>
+                            <input type="text" class="form-control" id="player1" placeholder="Enter player name">
+                        </div>
+                        <div class="vs-label">
+                            vs
+                        </div>
+                        <div class="compare-input">
+                            <label class="form-label">Player 2</label>
+                            <input type="text" class="form-control" id="player2" placeholder="Enter player name">
+                        </div>
+                        <div class="mt-3 text-center w-100">
+                            <button type="submit" class="btn btn-primary">Compare Players</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Team Comparison Tab -->
+                <div class="tab-pane fade" id="team-comparison-tab" role="tabpanel">
+                    <form class="comparison-form">
+                        <div class="compare-input">
+                            <label class="form-label">Team 1</label>
+                            <input type="text" class="form-control" id="team1" placeholder="Enter team name">
+                        </div>
+                        <div class="vs-label">
+                            vs
+                        </div>
+                        <div class="compare-input">
+                            <label class="form-label">Team 2</label>
+                            <input type="text" class="form-control" id="team2" placeholder="Enter team name">
+                        </div>
+                        <div class="mt-3 text-center w-100">
+                            <button type="submit" class="btn btn-primary">Compare Teams</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="comparison-filters-section">
+        <div class="container">
+            <div class="filters-container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="filter-group">
+                            <h5 class="filter-title">Format</h5>
+                            <div class="filter-options">
+                                <div class="filter-option active">All Formats</div>
+                                <div class="filter-option">Test</div>
+                                <div class="filter-option">ODI</div>
+                                <div class="filter-option">T20I</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="filter-group">
+                            <h5 class="filter-title">Time Period</h5>
+                            <div class="filter-options">
+                                <div class="filter-option active">All Time</div>
+                                <div class="filter-option">Last 5 Years</div>
+                                <div class="filter-option">Last 2 Years</div>
+                                <div class="filter-option">Custom...</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="filter-group">
+                            <h5 class="filter-title">Venue</h5>
+                            <div class="filter-options">
+                                <div class="filter-option active">All Venues</div>
+                                <div class="filter-option">Home</div>
+                                <div class="filter-option">Away</div>
+                                <div class="filter-option">Neutral</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12 text-end">
+                        <button class="btn btn-sm btn-outline-secondary me-2">Reset Filters</button>
+                        <button class="btn btn-sm btn-primary">Apply</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="comparison-results mt-4" style="display: none;">
+        <div class="container">
+            <h2 class="section-title">Comparison Results</h2>
+            
+            <!-- Player Comparison Results -->
+            <div class="player-comparison-results">
+                <div class="radar-chart-container mb-4">
+                    <canvas id="careerStatsComparisonChart"></canvas>
+                </div>
+
+                <div class="comparison-wrapper">
+                    <div class="comparison-card">
+                        <div class="comparison-card-header">
+                            <div class="comparison-card-image">
+                                <svg width="80" height="80" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="40" cy="40" r="40" fill="#f0f0f0"></circle>
+                                    <text x="50%" y="50%" font-family="Arial" font-size="16" text-anchor="middle" dominant-baseline="middle" fill="#888">P1</text>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="comparison-card-title">Player 1</h3>
+                                <div class="comparison-card-subtitle">Right-handed Batsman | India</div>
+                            </div>
+                        </div>
+                        <div class="comparison-stats">
+                            <div class="comparison-stat-item">
+                                <div class="comparison-stat-label">Matches</div>
+                                <div class="comparison-stat-value winner-value">498</div>
+                            </div>
+                            <div class="comparison-stat-item">
+                                <div class="comparison-stat-label">Runs</div>
+                                <div class="comparison-stat-value winner-value">24,344</div>
+                            </div>
+                            <div class="comparison-stat-item">
+                                <div class="comparison-stat-label">Average</div>
+                                <div class="comparison-stat-value">53.78</div>
+                            </div>
+                            <div class="comparison-stat-item">
+                                <div class="comparison-stat-label">Strike Rate</div>
+                                <div class="comparison-stat-value">86.23</div>
+                            </div>
+                            <div class="comparison-stat-item">
+                                <div class="comparison-stat-label">Centuries</div>
+                                <div class="comparison-stat-value winner-value">75</div>
+                            </div>
+                            <div class="comparison-stat-item">
+                                <div class="comparison-stat-label">Half Centuries</div>
+                                <div class="comparison-stat-value winner-value">130</div>
+                            </div>
+                            <div class="comparison-stat-item">
+                                <div class="comparison-stat-label">Highest Score</div>
+                                <div class="comparison-stat-value">254*</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="comparison-card">
+                        <div class="comparison-card-header">
+                            <div class="comparison-card-image">
+                                <svg width="80" height="80" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="40" cy="40" r="40" fill="#f0f0f0"></circle>
+                                    <text x="50%" y="50%" font-family="Arial" font-size="16" text-anchor="middle" dominant-baseline="middle" fill="#888">P2</text>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="comparison-card-title">Player 2</h3>
+                                <div class="comparison-card-subtitle">Right-handed Batsman | Australia</div>
+                            </div>
+                        </div>
+                        <div class="comparison-stats">
+                            <div class="comparison-stat-item">
+                                <div class="comparison-stat-label">Matches</div>
+                                <div class="comparison-stat-value">463</div>
+                            </div>
+                            <div class="comparison-stat-item">
+                                <div class="comparison-stat-label">Runs</div>
+                                <div class="comparison-stat-value">22,187</div>
+                            </div>
+                            <div class="comparison-stat-item">
+                                <div class="comparison-stat-label">Average</div>
+                                <div class="comparison-stat-value winner-value">55.32</div>
+                            </div>
+                            <div class="comparison-stat-item">
+                                <div class="comparison-stat-label">Strike Rate</div>
+                                <div class="comparison-stat-value winner-value">89.56</div>
+                            </div>
+                            <div class="comparison-stat-item">
+                                <div class="comparison-stat-label">Centuries</div>
+                                <div class="comparison-stat-value">71</div>
+                            </div>
+                            <div class="comparison-stat-item">
+                                <div class="comparison-stat-label">Half Centuries</div>
+                                <div class="comparison-stat-value">115</div>
+                            </div>
+                            <div class="comparison-stat-item">
+                                <div class="comparison-stat-label">Highest Score</div>
+                                <div class="comparison-stat-value winner-value">334*</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-5">
+                    <h3>Performance by Format</h3>
+                    <div class="chart-container">
+                        <canvas id="formatComparisonChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="mt-5">
+                    <h3>Yearly Runs Comparison</h3>
+                    <div class="chart-container">
+                        <canvas id="yearlyRunsComparisonChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="comparison-note mt-4 text-center">
+                    <p>* Green values indicate the better statistic between the players.</p>
+                </div>
+
+                <div class="text-center mt-4">
+                    <a href="/pages/search.html" class="btn btn-outline-primary me-2">New Search</a>
+                    <button class="btn btn-primary" onclick="updateComparisonStats()">Refresh Comparison</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="comparison-team-results mt-4" style="display: none;">
+        <div class="container">
+            <h2 class="section-title">Team Comparison Results</h2>
+            
+            <div class="radar-chart-container mb-4">
+                <canvas id="teamComparisonChart"></canvas>
+            </div>
+
+            <div class="comparison-wrapper">
+                <div class="comparison-card">
+                    <div class="comparison-card-header">
+                        <div class="comparison-card-image">
+                            <svg width="80" height="80" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="40" cy="40" r="40" fill="#0052CC"></circle>
+                                <text x="50%" y="50%" font-family="Arial" font-size="16" text-anchor="middle" dominant-baseline="middle" fill="#fff">T1</text>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="comparison-card-title">Team 1</h3>
+                            <div class="comparison-card-subtitle">ICC Rank: #1</div>
+                        </div>
+                    </div>
+                    <div class="comparison-stats">
+                        <div class="comparison-stat-item">
+                            <div class="comparison-stat-label">Total Matches</div>
+                            <div class="comparison-stat-value winner-value">1765</div>
+                        </div>
+                        <div class="comparison-stat-item">
+                            <div class="comparison-stat-label">Wins</div>
+                            <div class="comparison-stat-value">823</div>
+                        </div>
+                        <div class="comparison-stat-item">
+                            <div class="comparison-stat-label">Win Percentage</div>
+                            <div class="comparison-stat-value">46.6%</div>
+                        </div>
+                        <div class="comparison-stat-item">
+                            <div class="comparison-stat-label">ICC Trophies</div>
+                            <div class="comparison-stat-value">4</div>
+                        </div>
+                        <div class="comparison-stat-item">
+                            <div class="comparison-stat-label">World Cups</div>
+                            <div class="comparison-stat-value">2</div>
+                        </div>
+                        <div class="comparison-stat-item">
+                            <div class="comparison-stat-label">T20 World Cups</div>
+                            <div class="comparison-stat-value">1</div>
+                        </div>
+                        <div class="comparison-stat-item">
+                            <div class="comparison-stat-label">Head-to-Head Wins</div>
+                            <div class="comparison-stat-value">55</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-card">
+                    <div class="comparison-card-header">
+                        <div class="comparison-card-image">
+                            <svg width="80" height="80" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="40" cy="40" r="40" fill="#006400"></circle>
+                                <text x="50%" y="50%" font-family="Arial" font-size="16" text-anchor="middle" dominant-baseline="middle" fill="#fff">T2</text>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="comparison-card-title">Team 2</h3>
+                            <div class="comparison-card-subtitle">ICC Rank: #2</div>
+                        </div>
+                    </div>
+                    <div class="comparison-stats">
+                        <div class="comparison-stat-item">
+                            <div class="comparison-stat-label">Total Matches</div>
+                            <div class="comparison-stat-value">1680</div>
+                        </div>
+                        <div class="comparison-stat-item">
+                            <div class="comparison-stat-label">Wins</div>
+                            <div class="comparison-stat-value winner-value">958</div>
+                        </div>
+                        <div class="comparison-stat-item">
+                            <div class="comparison-stat-label">Win Percentage</div>
+                            <div class="comparison-stat-value winner-value">57.0%</div>
+                        </div>
+                        <div class="comparison-stat-item">
+                            <div class="comparison-stat-label">ICC Trophies</div>
+                            <div class="comparison-stat-value winner-value">7</div>
+                        </div>
+                        <div class="comparison-stat-item">
+                            <div class="comparison-stat-label">World Cups</div>
+                            <div class="comparison-stat-value winner-value">5</div>
+                        </div>
+                        <div class="comparison-stat-item">
+                            <div class="comparison-stat-label">T20 World Cups</div>
+                            <div class="comparison-stat-value">1</div>
+                        </div>
+                        <div class="comparison-stat-item">
+                            <div class="comparison-stat-label">Head-to-Head Wins</div>
+                            <div class="comparison-stat-value winner-value">80</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-5">
+                <h3>Head-to-Head Results by Format</h3>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="stat-card">
+                            <h4 class="text-center">Test Matches</h4>
+                            <div class="d-flex justify-content-between align-items-center my-3">
+                                <div class="text-center">
+                                    <h5 class="mb-0">30</h5>
+                                    <small>Team 1</small>
+                                </div>
+                                <div class="text-center">
+                                    <h4 class="mb-0">vs</h4>
+                                </div>
+                                <div class="text-center">
+                                    <h5 class="mb-0">45</h5>
+                                    <small>Team 2</small>
+                                </div>
+                            </div>
+                            <div class="text-center text-muted">
+                                <small>15 Draws/Ties | 90 Total Matches</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="stat-card">
+                            <h4 class="text-center">ODI Matches</h4>
+                            <div class="d-flex justify-content-between align-items-center my-3">
+                                <div class="text-center">
+                                    <h5 class="mb-0">45</h5>
+                                    <small>Team 1</small>
+                                </div>
+                                <div class="text-center">
+                                    <h4 class="mb-0">vs</h4>
+                                </div>
+                                <div class="text-center">
+                                    <h5 class="mb-0">55</h5>
+                                    <small>Team 2</small>
+                                </div>
+                            </div>
+                            <div class="text-center text-muted">
+                                <small>5 No Results | 105 Total Matches</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="stat-card">
+                            <h4 class="text-center">T20I Matches</h4>
+                            <div class="d-flex justify-content-between align-items-center my-3">
+                                <div class="text-center">
+                                    <h5 class="mb-0">10</h5>
+                                    <small>Team 1</small>
+                                </div>
+                                <div class="text-center">
+                                    <h4 class="mb-0">vs</h4>
+                                </div>
+                                <div class="text-center">
+                                    <h5 class="mb-0">15</h5>
+                                    <small>Team 2</small>
+                                </div>
+                            </div>
+                            <div class="text-center text-muted">
+                                <small>2 Tied/No Results | 27 Total Matches</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="comparison-note mt-4 text-center">
+                <p>* Green values indicate the better statistic between the teams.</p>
+            </div>
+
+            <div class="text-center mt-4">
+                <a href="/pages/search.html" class="btn btn-outline-primary me-2">New Search</a>
+                <button class="btn btn-primary" onclick="updateComparisonStats()">Refresh Comparison</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="related-comparisons-section mt-5">
+        <div class="container">
+            <h2 class="section-title">Popular Comparisons</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="stat-card">
+                        <h4>Players</h4>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <a href="/pages/comparison.html?player1=Virat%20Kohli&player2=Sachin%20Tendulkar">Virat Kohli vs Sachin Tendulkar</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="/pages/comparison.html?player1=Ricky%20Ponting&player2=Brian%20Lara">Ricky Ponting vs Brian Lara</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="/pages/comparison.html?player1=Jasprit%20Bumrah&player2=Pat%20Cummins">Jasprit Bumrah vs Pat Cummins</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="/pages/comparison.html?player1=MS%20Dhoni&player2=Adam%20Gilchrist">MS Dhoni vs Adam Gilchrist</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-card">
+                        <h4>Teams</h4>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <a href="/pages/comparison.html?team1=India&team2=Australia">India vs Australia</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="/pages/comparison.html?team1=England&team2=New%20Zealand">England vs New Zealand</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="/pages/comparison.html?team1=Pakistan&team2=South%20Africa">Pakistan vs South Africa</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="/pages/comparison.html?team1=West%20Indies&team2=Sri%20Lanka">West Indies vs Sri Lanka</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-card">
+                        <h4>Era Comparisons</h4>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <a href="/pages/comparison.html?player1=Don%20Bradman&player2=Virat%20Kohli">Don Bradman vs Virat Kohli</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="/pages/comparison.html?player1=Shane%20Warne&player2=Ravichandran%20Ashwin">Shane Warne vs R Ashwin</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="/pages/comparison.html?player1=Wasim%20Akram&player2=Jasprit%20Bumrah">Wasim Akram vs Jasprit Bumrah</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="/pages/comparison.html?team1=Australia%202000s&team2=India%202020s">Australia 2000s vs India 2020s</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h3 class="footer-title">CricketStats</h3>
+                    <p>Your ultimate destination for cricket statistics, records, and analysis.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <h4 class="footer-subtitle">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/pages/player-profile.html">Players</a></li>
+                        <li><a href="/pages/team-stats.html">Teams</a></li>
+                        <li><a href="/pages/search.html">Search</a></li>
+                        <li><a href="/pages/comparison.html">Compare</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h4 class="footer-subtitle">Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h4 class="footer-subtitle">Newsletter</h4>
+                    <p>Subscribe to our newsletter for the latest cricket updates.</p>
+                    <form class="newsletter-form">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Your Email">
+                            <button class="btn btn-primary" type="submit">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 CricketStats. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/charts.js"></script>
+    <script>
+        // Initialize comparison form functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check URL parameters for pre-filled comparison
+            const urlParams = new URLSearchParams(window.location.search);
+            const player1Param = urlParams.get('player1');
+            const player2Param = urlParams.get('player2');
+            const team1Param = urlParams.get('team1');
+            const team2Param = urlParams.get('team2');
+            
+            // Handle player comparison pre-fill
+            if (player1Param) {
+                document.getElementById('player1').value = player1Param;
+                // If this is a single player coming from profile page
+                if (!player2Param) {
+                    // Focus on player2 input for user convenience
+                    setTimeout(() => {
+                        document.getElementById('player2').focus();
+                    }, 500);
+                }
+            }
+            
+            if (player2Param) {
+                document.getElementById('player2').value = player2Param;
+            }
+            
+            // If both players are provided, automatically run comparison
+            if (player1Param && player2Param) {
+                // Show player comparison results
+                document.querySelector('.comparison-results').style.display = 'block';
+                // Scroll to results
+                setTimeout(() => {
+                    document.querySelector('.comparison-results').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }, 500);
+                // Initialize comparison charts
+                initComparisonCharts();
+            }
+            
+            // Handle team comparison pre-fill
+            if (team1Param || team2Param) {
+                // Switch to team tab
+                document.querySelector('[onclick="switchTab(event, \'team-comparison-tab\')"]').click();
+                
+                if (team1Param) {
+                    document.getElementById('team1').value = team1Param;
+                }
+                
+                if (team2Param) {
+                    document.getElementById('team2').value = team2Param;
+                }
+                
+                // If both teams are provided, automatically run comparison
+                if (team1Param && team2Param) {
+                    // Show team comparison results
+                    document.querySelector('.comparison-team-results').style.display = 'block';
+                    // Scroll to results
+                    setTimeout(() => {
+                        document.querySelector('.comparison-team-results').scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }, 500);
+                    // Initialize comparison charts
+                    initComparisonCharts();
+                }
+            }
+            
+            // Player comparison form submit handler
+            const playerComparisonForm = document.querySelector('#player-comparison-tab form');
+            if (playerComparisonForm) {
+                playerComparisonForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const player1 = document.getElementById('player1').value.trim();
+                    const player2 = document.getElementById('player2').value.trim();
+                    
+                    if (player1 && player2) {
+                        // Show player comparison results
+                        document.querySelector('.comparison-results').style.display = 'block';
+                        // Scroll to results
+                        document.querySelector('.comparison-results').scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                        
+                        // Update player names in UI
+                        document.querySelectorAll('.comparison-card-title')[0].textContent = player1;
+                        document.querySelectorAll('.comparison-card-title')[1].textContent = player2;
+                        
+                        // Initialize comparison charts if they haven't been initialized yet
+                        initComparisonCharts();
+                    }
+                });
+            }
+            
+            // Team comparison form submit handler
+            const teamComparisonForm = document.querySelector('#team-comparison-tab form');
+            if (teamComparisonForm) {
+                teamComparisonForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const team1 = document.getElementById('team1').value.trim();
+                    const team2 = document.getElementById('team2').value.trim();
+                    
+                    if (team1 && team2) {
+                        // Show team comparison results
+                        document.querySelector('.comparison-team-results').style.display = 'block';
+                        // Scroll to results
+                        document.querySelector('.comparison-team-results').scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                        
+                        // Update team names in UI
+                        document.querySelectorAll('.comparison-team-results .comparison-card-title')[0].textContent = team1;
+                        document.querySelectorAll('.comparison-team-results .comparison-card-title')[1].textContent = team2;
+                        
+                        // Initialize comparison charts if they haven't been initialized yet
+                        initComparisonCharts();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
