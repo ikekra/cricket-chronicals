@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import StatChart from './StatChart';
 
+
 const ComparisonTool = ({ type = 'player' }) => {
   const [item1, setItem1] = useState('');
   const [item2, setItem2] = useState('');
